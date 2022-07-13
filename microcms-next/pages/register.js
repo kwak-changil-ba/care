@@ -55,13 +55,6 @@ export default function Home({ form }) {
     const show = async (e) => {
         e.preventDefault();
         console.log(formData);
-
-        await axios.post('https://care.microcms.io/api/v1/form', formData, {
-            headers: {
-              'Content-Type': 'application/json',
-              'X-MICROCMS-API-KEY': '21c684e8af17424d9530608ce0ded737daea', // 作成したAPI-KEY
-            },
-          })
     }
 
     return (

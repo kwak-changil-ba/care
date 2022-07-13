@@ -1,5 +1,4 @@
 import Link from "next/link";
-// import { client } from "../libs/client";
 
 export default function Home({ care }) {
     return (
@@ -29,13 +28,6 @@ export default function Home({ care }) {
                         <button type="button"><Link href={`/`}>戻る </Link></button>
                     </center>
                 </form>
-                {/* {care.map((care) => (
-          <li key={care.id}>
-            <Link href={`/care/${care.id}`}>
-              <a>{care.title}</a>
-            </Link>
-          </li>
-        ))} */}
             </ul>
         </div>
     );

@@ -1,46 +1,6 @@
-// import Link from "next/link";
-// import { client } from "../libs/client";
-
-// export default function Home({ categories }) {
-
-//   console.log(categories)
-
-//   return (
-//     <div>
-//       <ul>
-//         <center>
-//           <h1>メイン</h1>
-//           <p>microCMSテスト</p>
-//           {categories.map((categories) => (
-//             <>
-//             <h1 key={categories.id}>{categories.title}</h1>
-//             <img src={categories.file.url} key={categories.id + 1} />
-//             </>
-//           ))}
-//           <button type="button"><Link href={`/login`}>ログイン </Link></button>
-//           <button type="button"><Link href={`/register`}>会員登録 </Link></button>
-//           <button type="button"><Link href={`/toDo`}>リスト </Link></button>
-//         </center>
-//       </ul>
-//     </div>
-//   );
-// }
-
-// export const getStaticProps = async () => {
-//   const data = await client.get({ endpoint: "categories" });
-
-//   return {
-//     props: {
-//       categories: data.contents,
-//     },
-//   };
-// };
-
-
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Link from "next/link";
 import { client } from "../libs/client";
 
 export default function Home({ cms }) {
