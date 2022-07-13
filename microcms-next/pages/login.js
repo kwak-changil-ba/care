@@ -17,7 +17,6 @@ export default function Home({ care }) {
                             <br />
                             <div>
                                 <input type="password" name="pass" placeholder="Password" />
-                                {/* <input type="password" name="pass" placeholder="Password" onchange="" /> */}
                             </div>
                         </center>
 
