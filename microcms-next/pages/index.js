@@ -11,6 +11,9 @@ export default function Home({ cms }) {
   console.log(cms)
   console.log(session)
 
+  console.log(process.env.GOOGLE_CLIENT_ID)
+  console.log(process.env.GOOGLE_CLIENT_SECRET)
+
   return (
     <div className={styles.container}>
       <Head>
