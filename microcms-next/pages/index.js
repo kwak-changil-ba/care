@@ -1,13 +1,15 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { client } from "../libs/client";
+import { useSession } from 'next-auth/react'
 
 export default function Home({ cms }) {
 
   const today = new Date();
   const year = today.getFullYear();
+  const { data: session } = useSession()
   console.log(cms)
+  console.log(session)
 
   return (
     <div className={styles.container}>
@@ -23,7 +25,13 @@ export default function Home({ cms }) {
         </h1>
 
         <p className={styles.description}>
-          <code className={styles.code}>microCMS</code>
+          <code className={styles.code}>
+            {
+              !session
+                ? "microCMS"
+                : "microCMS  " + "「" + session.user.name +  "」"
+            }
+          </code>
         </p>
         <div className={styles.grid}>
 
@@ -38,10 +46,10 @@ export default function Home({ cms }) {
 
       <footer className={styles.footer}>
         <p>
-          {year}{' '}
-          <span className={styles.logo}>
+          {year}{' '}careRevo
+          {/* <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          </span> */}
         </p>
       </footer>
     </div>

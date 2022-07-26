@@ -6,4 +6,4 @@ const client = createClient(
         apiKey: process.env.API_KEY,
     });
 
-export { client}
+export { client }

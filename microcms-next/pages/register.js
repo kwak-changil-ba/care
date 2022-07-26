@@ -1,9 +1,52 @@
 // import { client } from "../libs/client";
-import Link from "next/link";
 import axios from 'axios'
 import useState from 'react-hook-use-state';
+import * as React from 'react';
 
-export default function Home({ form }) {
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+export default function Register() {
+
+    const theme = createTheme();
+
+    const sendData = (e) => {
+
+        e.preventDefault();
+
+        const form_data = {
+            loginId: loginId,
+            password: password,
+            email: mail,
+            fname: fname,
+            lname: lname,
+            age: age,
+            gender: gender
+        }
+
+        axios.post('https://' + `care` + '.microcms.io/api/v1/register', form_data, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-MICROCMS-API-KEY': "21c684e8af17424d9530608ce0ded737daea", // 作成したAPI-KEY
+            }
+        }).then((res) =>{
+            console.log(res)
+            if(res.status == 201){
+                alert("転送完了")
+                return window.location.reload()
+            } else {
+                alert("転送失敗")
+                return window.location.reload()
+            }
+        })
+    }
 
     const [loginId, setLoginId] = useState("");
     const [password, setPassword] = useState("");
@@ -42,82 +85,112 @@ export default function Home({ form }) {
         console.log(e.target.value)
     }
 
-    const formData = {
-        loginId: loginId,
-        password: password,
-        mail: mail,
-        fname: fname,
-        lname: lname,
-        age: age,
-        gender: gender,
-    }
-
-    const show = async (e) => {
-        e.preventDefault();
-        console.log(formData);
-    }
-
     return (
-        <div>
-            <center>
-                <h1>会員登録</h1>
-                <p>（POSTテスト）</p>
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Typography component="h1" variant="h5">
+                            会員登録
+                        </Typography>
+                        <Box component="form" onSubmit={sendData} noValidate sx={{ mt: 1 }}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="id"
+                                label="ID"
+                                name="id"
+                                autoComplete="id"
+                                onChange={loginIdC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                type="password"
+                                id="password"
+                                label="パスワード"
+                                name="password"
+                                autoComplete="password"
+                                onChange={passwordC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="メール"
+                                name="email"
+                                autoComplete="email"
+                                onChange={mailC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="lname"
+                                label="氏"
+                                name="lname"
+                                autoComplete="lname"
+                                onChange={lnameC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="fname"
+                                label="名"
+                                name="fname"
+                                autoComplete="fname"
+                                onChange={fnameC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="age"
+                                label="年齢"
+                                name="age"
+                                autoComplete="age"
+                                onChange={ageC}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="gender"
+                                label="性別"
+                                name="gender"
+                                autoComplete="gender"
+                                onChange={genderC}
+                            />
 
-                <div>
-                    <form name="login_form">
-                        <div>
-                            <input type="text" name="loginid" id="loginid" placeholder="ログインID" onChange={loginIdC} />
-                        </div>
-                        <br />
-                        <div>
-                            <input type="password" name="password" id="password" placeholder="パスワード" onChange={passwordC}/>
-                        </div>
-                        <br />
-                        <div>
-                            <input type="text" name="mail" id="mail" placeholder="メール" onChange={mailC}/>
-                        </div>
-                        <br />
-                        <div>
-                            <input type="text" name="fname" id="fname" placeholder="氏" onChange={fnameC}/>
-                        </div>
-                        <br />
-                        <div>
-                            <input type="text" name="lname" id="lname" placeholder="名" onChange={lnameC}/>
-                        </div>
-                        <br />
-                        <div>
-                            <input type="text" name="age" id="age" placeholder="年齢" onChange={ageC}/>
-                        </div>
-                        <br />
-                        <div>
-                            <input type="text" name="gender" id="gender" placeholder="性別" onChange={genderC}/>
-                        </div>
-                        <br />
-                        <button type="submit" onClick={show}>登録</button>
-                        <button type="button"><Link href={`/`}>戻る </Link></button>
-                    </form>
-                </div>
-            </center>
-        </div >
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                転送
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href={`/`} variant="body2">
+                                        戻る
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        </Box>
+                    </Box>
+                </Container>
+            </ThemeProvider >
     );
 }
-
-// export const getStaticProps = async () => {
-//     // const data = await client.get({ endpoint: "form" });
-//     const data = await client.post({ endpoint: "form" });
-//     return {
-//         props: {
-//             form: data.contents,
-//         },
-//     };
-// };
-
-// export const getStaticProps = async () => {
-//     const data = await client.get({ endpoint: "form" });
-
-//     return {
-//         props: {
-//             form: data.contents,
-//         },
-//     };
-// };

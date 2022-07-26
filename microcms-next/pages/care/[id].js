@@ -1,4 +1,5 @@
 import { client } from "../../libs/client";
+import Image from 'next/image'
 
 export default function BlogId({ care }) {
   console.log(care)
@@ -15,7 +16,7 @@ export default function BlogId({ care }) {
         {
           (care.img == null)
             ? null
-            : <img src={care.img.url} />}
+            : <Image src={care.img.url}  width={1000} height={1000} />}
       </center>
     </main>
   );
