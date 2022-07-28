@@ -7,8 +7,6 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // clientId: "577616181608-hh5hdok6ctobeqjgn5h6chr1q7j6eoci.apps.googleusercontent.com",
-      // clientSecret: "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",
     }),
   ],
   callbacks: { // googleログイン成功し処理1回実行,

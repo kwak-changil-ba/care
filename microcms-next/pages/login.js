@@ -24,6 +24,8 @@ export default function Login({ }) {
     console.log(process.env.NEXT_PUBLIC_sdsad)
     console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
     console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
+    console.log(process.env.GOOGLE_CLIENT_ID)
+    console.log(process.env.GOOGLE_CLIENT_SECRET)
 
     const router = useRouter()
 
