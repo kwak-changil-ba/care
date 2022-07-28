@@ -17,6 +17,14 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
 export default function Login({ }) {
+
+    console.log(process.env.NEXT_PUBLIC_API_KEY)
+    console.log(process.env.NEXT_PUBLIC_G_API_KEY)
+    console.log(process.env.NEXT_PUBLIC_Url)
+    console.log(process.env.NEXT_PUBLIC_sdsad)
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+    console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET)
+
     const router = useRouter()
 
     const { data: session } = useSession()
@@ -52,7 +60,7 @@ export default function Login({ }) {
         axios.post('https://care.microcms.io/api/v1/login', form_data, {
             headers: {
                 'Content-Type': 'application/json',
-                'X-MICROCMS-API-KEY': `21c684e8af17424d9530608ce0ded737daea`, // 作成したAPI-KEY
+                'X-MICROCMS-API-KEY': process.env.NEXT_PUBLIC_API_KEY, // 作成したAPI-KEY
             }
         }).then((res) =>{
             console.log(res)
