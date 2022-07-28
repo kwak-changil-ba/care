@@ -9,6 +9,7 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
   callbacks: { // googleログイン成功し処理1回実行,
     async signIn({ user, account, profile }) {
       console.log('ユーザ情報');
